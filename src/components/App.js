@@ -54,10 +54,12 @@ class App extends Component {
     ],
     filteredProducts: [],
     isFiltered: false,
+    itemsNumber: 1,
   };
 
   addProduct = (name, category, quantity, unit) => {
     // console.log("dodaj obiekt");
+    quantity = quantity * 1;
     const product = {
       id: this.counter,
       name,
@@ -76,8 +78,6 @@ class App extends Component {
   };
 
   deleteProduct = (id) => {
-    console.log("klik");
-
     let products = [...this.state.products];
     products = products.filter((product) => product.id !== id);
     let filteredProducts = [...this.state.filteredProducts];
@@ -90,14 +90,38 @@ class App extends Component {
   };
 
   filterProducts = (category) => {
-    console.log(category);
-    let products = [...this.state.products];
-    products = products.filter((product) => product.category === category);
+    if (category === "all") {
+      this.setState({
+        filteredProducts: [],
+        isFiltered: false,
+      });
+    } else {
+      let products = [...this.state.products];
+      products = products.filter((product) => product.category === category);
+      this.setState({
+        filteredProducts: products,
+        isFiltered: true,
+      });
+    }
+  };
+
+  //Znalezc inny sposob na liczenie
+  countProducts = () => {
+    let itemsNumber = 0;
+    this.state.products.forEach((product) => (itemsNumber += product.quantity));
+    console.log(itemsNumber);
+
     this.setState({
-      filteredProducts: products,
-      isFiltered: true,
+      itemsNumber,
     });
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.products.length !== this.state.products.length) {
+      console.log("inny");
+      this.countProducts();
+    }
+  }
 
   render() {
     return (
@@ -110,6 +134,7 @@ class App extends Component {
           filteredProducts={this.state.filteredProducts}
           delete={this.deleteProduct}
           isFiltered={this.state.isFiltered}
+          itemsNumber={this.state.itemsNumber}
         />
         <h1>Categories</h1>
         <CategoryList filter={this.filterProducts} />

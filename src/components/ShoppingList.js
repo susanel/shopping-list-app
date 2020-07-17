@@ -20,6 +20,10 @@ const ShoppingList = (props) => {
       <div className="table-tile main">Units</div>
       <div className="table-tile main">Delete</div>
       {props.isFiltered ? filteredItems : items}
+      <div className="count">
+        <h4>Number of items: {props.itemsNumber} pcs</h4>
+        <h4>Weight of items</h4>
+      </div>
     </div>
   );
 };
