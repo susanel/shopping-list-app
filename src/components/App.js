@@ -19,18 +19,41 @@ class App extends Component {
       {
         id: 1,
         name: "marchew",
-        category: "veggies",
+        category: "vegetables",
         quantity: 5,
         unit: "szt.",
       },
       {
         id: 2,
+        name: "gruszki",
+        category: "fruits",
+        quantity: 7,
+        unit: "szt.",
+      },
+      {
+        id: 3,
         name: "chleb",
-        category: "bread",
+        category: "baked goods",
+        quantity: 1,
+        unit: "szt.",
+      },
+      {
+        id: 4,
+        name: "chusteczki higieniczne",
+        category: "cleaners",
+        quantity: 2,
+        unit: "szt.",
+      },
+      {
+        id: 5,
+        name: "zeszyt",
+        category: "others",
         quantity: 1,
         unit: "szt.",
       },
     ],
+    filteredProducts: [],
+    isFiltered: false,
   };
 
   addProduct = (name, category, quantity, unit) => {
@@ -53,10 +76,26 @@ class App extends Component {
   };
 
   deleteProduct = (id) => {
+    console.log("klik");
+
     let products = [...this.state.products];
     products = products.filter((product) => product.id !== id);
+    let filteredProducts = [...this.state.filteredProducts];
+    filteredProducts = filteredProducts.filter((product) => product.id !== id);
+
     this.setState({
       products,
+      filteredProducts,
+    });
+  };
+
+  filterProducts = (category) => {
+    console.log(category);
+    let products = [...this.state.products];
+    products = products.filter((product) => product.category === category);
+    this.setState({
+      filteredProducts: products,
+      isFiltered: true,
     });
   };
 
@@ -68,10 +107,12 @@ class App extends Component {
         <h1>Shopping List</h1>
         <ShoppingList
           products={this.state.products}
+          filteredProducts={this.state.filteredProducts}
           delete={this.deleteProduct}
+          isFiltered={this.state.isFiltered}
         />
         <h1>Categories</h1>
-        <CategoryList />
+        <CategoryList filter={this.filterProducts} />
         <GeneratePDF products={this.state.products} />
       </div>
     );

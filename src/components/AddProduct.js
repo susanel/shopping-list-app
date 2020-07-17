@@ -63,7 +63,7 @@ class AddProduct extends Component {
       if (add) {
         this.setState({
           product: "",
-          category: "veggies",
+          category: "vegetables",
           number: "",
           unit: "pcs",
           checkedPcs: true,
@@ -116,12 +116,12 @@ class AddProduct extends Component {
             value={this.state.category}
             onChange={this.handleChange}
           >
-            <option value="veggies" defaultChecked>
+            <option value="vegetables" defaultChecked>
               warzywa
             </option>
             <option value="fruits">owoce</option>
             <option value="dairy">nabial</option>
-            <option value="bread">pieczywo</option>
+            <option value="baked goods">pieczywo</option>
             <option value="cleaners">artykuly higieniczne</option>
             <option value="others">inne</option>
           </select>

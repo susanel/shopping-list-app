@@ -1,8 +1,14 @@
 import React from "react";
 import Item from "./Item";
+// import Vegetable from "./Vegetable";
+// import VegetableList from "../product lists/VegetableList";
 
 const ShoppingList = (props) => {
   const items = props.products.map((product) => (
+    <Item key={product.id} product={product} delete={props.delete} />
+  ));
+
+  const filteredItems = props.filteredProducts.map((product) => (
     <Item key={product.id} product={product} delete={props.delete} />
   ));
 
@@ -13,7 +19,7 @@ const ShoppingList = (props) => {
       <div className="table-tile main">Quantity</div>
       <div className="table-tile main">Units</div>
       <div className="table-tile main">Delete</div>
-      {items}
+      {props.isFiltered ? filteredItems : items}
     </div>
   );
 };

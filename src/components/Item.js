@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Item = (props) => {
   const { name, category, quantity, unit, id } = props.product;
 
+  console.log(props);
+
   return (
     <>
       <div className="table-tile">{name}</div>
