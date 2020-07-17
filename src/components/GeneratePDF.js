@@ -18,7 +18,7 @@ class GeneratePDF extends Component {
     const headers = [["Nº", "PRODUCT", "CATEGORY", "QUANTITY", "UNITS"]];
 
     const products = this.props.products.map((product, i) => [
-      i,
+      i + 1,
       product.name,
       product.category,
       product.quantity,
@@ -27,7 +27,7 @@ class GeneratePDF extends Component {
 
     let content = {
       startY: 60,
-      headerStyles: {
+      headStyles: {
         fontStyle: "bold",
         fillColor: [216, 131, 143],
       },
