@@ -1,0 +1,29 @@
+/*! 3. ShoppingList Component  */
+
+.list 
+  display: flex
+  flex-wrap: wrap
+  margin-bottom: 60px
+  border-radius: 20px
+  background-color: $pinky-white
+  overflow: hidden
+  .table-tile 
+    flex-basis: 22%
+    flex-grow: 1
+    padding: 10px
+    text-align: center
+    &:nth-child(5n) 
+      flex-basis: 8%
+  .table-tile.main 
+    background-color: $red
+    font-weight: bold
+  button 
+    margin-left: 10px
+    padding: 5px
+    background-color: transparent
+  .count 
+    width: 100%
+    padding: 10px 0
+    margin-top: 30px
+    text-align: center
+    background-color: $pink
