@@ -10,7 +10,7 @@ const tilesArray = [
   { icon: "shopping-basket", category: "others" },
 ];
 
-const CategoryList = (props) => {
+const CategoryFilter = (props) => {
   const tiles = tilesArray.map((tile, i) => (
     <div className="tile" onClick={() => props.filter(tile.category)} key={i}>
       <div className="inner-tile">
@@ -34,4 +34,4 @@ const CategoryList = (props) => {
   );
 };
 
-export default CategoryList;
+export default CategoryFilter;

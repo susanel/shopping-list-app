@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import AddProduct from "./AddProduct";
 import ShoppingList from "./ShoppingList";
-import CategoryList from "./CategoryList";
-import GeneratePDF from "./GeneratePDF";
+import CategoryFilter from "./CategoryFilter";
+import GeneratePDF from "../components/GeneratePDF";
 
 class App extends Component {
   state = {
@@ -113,8 +113,11 @@ class App extends Component {
         isFiltered: false,
       });
     } else {
+      console.log(category);
       let products = [...this.state.products];
       products = products.filter((product) => product.category === category);
+      console.log(products);
+
       this.setState({
         filteredProducts: products,
         isFiltered: true,
@@ -141,7 +144,7 @@ class App extends Component {
 
   manageLocalStorage = (command, nextState = null) => {
     if (command === "get") {
-      // console.log("get data from LocalStorage");
+      // Get data from LocalStorage
       localStorage.getItem("products") &&
         this.setState({
           products: JSON.parse(localStorage.getItem("products")),
@@ -150,7 +153,7 @@ class App extends Component {
           idNumber: JSON.parse(localStorage.getItem("idNumber")),
         });
     } else if (command === "set") {
-      // console.log("Send data to LocalStorage");
+      // Send data to LocalStorage"
       localStorage.setItem("products", JSON.stringify(nextState.products));
       localStorage.setItem("idNumber", JSON.stringify(nextState.idNumber));
       localStorage.setItem(
@@ -191,17 +194,10 @@ class App extends Component {
       <div className="app">
         <h1>Add product</h1>
         <AddProduct add={this.addProduct} />
-        <h1>Categories</h1>
-        <CategoryList filter={this.filterProducts} />
+        <h1>Filter by category</h1>
+        <CategoryFilter filter={this.filterProducts} />
         <h1>Shopping List</h1>
-        <ShoppingList
-          products={this.state.products}
-          filteredProducts={this.state.filteredProducts}
-          delete={this.deleteProduct}
-          isFiltered={this.state.isFiltered}
-          itemsNumber={this.state.itemsNumber}
-          itemsWeight={this.state.itemsWeight}
-        />
+        <ShoppingList delete={this.deleteProduct} {...this.state} />
         <GeneratePDF products={this.state.products} />
       </div>
     );

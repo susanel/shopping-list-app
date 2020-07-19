@@ -11,8 +11,6 @@ class AddProduct extends Component {
     checkedKg: false,
   };
 
-  //Znale© jakiß lepszy i krótszy sposob
-  //wlasciwosci checked pozwalaja kontrolowac input
   handleChange = (e) => {
     if (e.target.type === "radio") {
       if (e.target.value === "pcs") {
@@ -70,7 +68,7 @@ class AddProduct extends Component {
     if (validation) {
       const add = this.props.add(product, category, number, unit);
 
-      //Czysci state
+      // Restart state if product was added
       if (add) {
         this.setState({
           product: "",

@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Item = (props) => {
+const Product = (props) => {
   const { name, category, quantity, unit, id } = props.product;
 
   return (
@@ -19,4 +19,4 @@ const Item = (props) => {
   );
 };
 
-export default Item;
+export default Product;
