@@ -5,7 +5,7 @@ import "jspdf-autotable";
 const GeneratePDF = (props) => {
   const exportPDF = () => {
     if (props.products.length === 0) {
-      alert("There is no items on your Shopping List!");
+      alert("There is no items on your shopping list!");
       return;
     }
 

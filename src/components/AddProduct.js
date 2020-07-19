@@ -39,11 +39,18 @@ class AddProduct extends Component {
     let correct = false;
     const number = this.state.number;
 
-    if (this.state.product.length > 2 && number > 0 && number < 100) {
+    if (
+      this.state.product.length > 2 &&
+      this.state.product.length < 20 &&
+      number > 0 &&
+      number < 100
+    ) {
       correct = true;
     } else {
       if (this.state.product.length <= 2) {
-        alert("The product name is too short");
+        alert("Product name is too short");
+      } else if (this.state.product.length >= 20) {
+        alert("Product name is too long. Maximum length: 19 characters.");
       } else if (number <= 0) {
         alert("Products quantity must be greater than 0");
       } else if (number >= 100) {
