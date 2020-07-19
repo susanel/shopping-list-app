@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "ee19f3fd6119d0ca0e3c",
-    "url": "/shopping-list-app/static/css/main.957a3857.chunk.css"
+    "revision": "014d7a7eef3cb5660876",
+    "url": "/shopping-list-app/static/css/main.150fc30b.chunk.css"
   },
   {
-    "revision": "ee19f3fd6119d0ca0e3c",
-    "url": "/shopping-list-app/static/js/main.d47965d9.chunk.js"
+    "revision": "014d7a7eef3cb5660876",
+    "url": "/shopping-list-app/static/js/main.e2fa9577.chunk.js"
   },
   {
     "revision": "3ca11ef6bde1b037f7b4",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/shopping-list-app/static/js/2.8128d63f.chunk.js"
   },
   {
-    "revision": "87400ec1ad8f7c54977418de0a1fc4a8",
+    "revision": "e58438eaee6826dfb246281269c3b1be",
     "url": "/shopping-list-app/index.html"
   }
 ];
