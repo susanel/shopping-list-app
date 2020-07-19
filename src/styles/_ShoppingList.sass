@@ -1,6 +1,6 @@
 /*! 3. ShoppingList Component  */
 
-.list 
+.shopping-list 
   display: flex
   flex-wrap: wrap
   margin-bottom: 60px
@@ -8,55 +8,45 @@
   background-color: $pinky-white
   overflow: hidden
   user-select: none
-  .no-items
-    padding: 30px 0
-    margin: 0 auto
-  .list-item
-    display: flex
-    width: 100%
   .list-main 
     display: flex
     width: 100%
     background-color: $red
     font-weight: bold
-  .table-tile 
+  .list
+    width: 100%
+    .list-item
+      display: flex
+      width: 100%
+  .table-tile
     flex-basis: 22%
     flex-grow: 1
     padding: 10px
     text-align: center
-    &:nth-child(5n) 
+    &:nth-child(5n)
       flex-basis: 8%
-  button 
-    margin-left: 10px
-    padding: 5px
-    background-color: transparent
+    button 
+      margin-left: 10px
+      padding: 5px
+      background-color: transparent
+
   .count-wrap
-    margin-top: 30px
-    // background-color: yellow
-    background-color: $pink
-    width: 100%
     display: flex
     justify-content: space-evenly
+    width: 100%
+    margin-top: 30px
+    background-color: $pink
+    .no-items
+      padding: 30px 0
+      font-weight: bold
     .count,.delete
-      flex-basis: 30%
+      flex-basis: 40%
       padding: 10px 0
-      text-align: center
-      // background-color: $pink
-    .delete
+    .delete,
       position: relative
       button
-        position: absolute
-        top: 50%
-        left: 50%
-        transform: translate(-50%,-50%)
-        padding: 10px 20px
-        border-radius: 10px
-        background-color: $pinky-white
-        font-size: 2.8rem
-        text-transform: uppercase
-        font-weight: bold
-        letter-spacing: 2px
-        transition: 0.2s
+        +button-style($pinky-white)
+        +position-center()
         &:hover
           background-color: $beige
     h3
