@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/shopping-list-app/static/js/2.8128d63f.chunk.js"
   },
   {
-    "revision": "2a9602695129634fed605f0e2d41e947",
+    "revision": "e7f1097ee6824cbe0734d1d30fb2713d",
     "url": "/shopping-list-app/index.html"
   }
 ];
