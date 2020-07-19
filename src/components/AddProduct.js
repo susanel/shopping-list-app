@@ -95,6 +95,7 @@ class AddProduct extends Component {
             value={this.state.product}
             onChange={this.handleChange}
           />
+
           <input
             className="quantity"
             name="number"
@@ -103,28 +104,32 @@ class AddProduct extends Component {
             value={this.state.number}
             onChange={this.handleChange}
           />
-          <label className="container">
-            pcs
-            <input
-              type="radio"
-              name="unit"
-              value="pcs"
-              checked={this.state.checkedPcs}
-              onChange={this.handleChange}
-            />
-            <span className="checkmark"></span>
-          </label>
-          <label className="container">
-            kg
-            <input
-              type="radio"
-              name="unit"
-              value="kg"
-              checked={this.state.checkedKg}
-              onChange={this.handleChange}
-            />
-            <span className="checkmark"></span>
-          </label>
+
+          <div className="columns">
+            <label className="container">
+              pcs
+              <input
+                type="radio"
+                name="unit"
+                value="pcs"
+                checked={this.state.checkedPcs}
+                onChange={this.handleChange}
+              />
+              <span className="checkmark"></span>
+            </label>
+            <label className="container">
+              kg
+              <input
+                type="radio"
+                name="unit"
+                value="kg"
+                checked={this.state.checkedKg}
+                onChange={this.handleChange}
+              />
+              <span className="checkmark"></span>
+            </label>
+          </div>
+
           <select
             name="category"
             value={this.state.category}
@@ -139,6 +144,7 @@ class AddProduct extends Component {
             <option value="cleaners">cleaners</option>
             <option value="others">others</option>
           </select>
+
           <button>
             <FontAwesomeIcon icon="cart-plus" style={{ fontSize: 36 }} />
           </button>
