@@ -1,4 +1,4 @@
-/* 4. CategoryList Component */
+/* 4. CategoryFilter Component */
   
 .categories 
   display: flex
@@ -22,10 +22,7 @@
     &:hover
       background-color: $pink
     .inner-tile
-      position: absolute
-      top: 50%
-      left: 50%
-      transform: translate(-50%,-50%)
+      +position-center()
   .tile.show
     flex-basis: 30%
     min-height: 0px
