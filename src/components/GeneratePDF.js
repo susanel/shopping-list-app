@@ -1,11 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-class GeneratePDF extends Component {
-  state = {};
-
-  generatePDF = () => {
+const GeneratePDF = () => {
+  const exportPDF = () => {
     const orientation = "portrait"; // portrait or landscape
     const unit = "pt"; //pt = points
     const size = "A4";
@@ -44,13 +42,11 @@ class GeneratePDF extends Component {
     doc.save("shopping-list.pdf");
   };
 
-  render() {
-    return (
-      <div className="print">
-        <button onClick={this.generatePDF}>Print your shopping list</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="print">
+      <button onClick={exportPDF}>Print your shopping list</button>
+    </div>
+  );
+};
 
 export default GeneratePDF;

@@ -1,77 +1,83 @@
 import React, { Component } from "react";
-import "../styles/App.css";
 import AddProduct from "./AddProduct";
 import ShoppingList from "./ShoppingList";
 import CategoryList from "./CategoryList";
 import GeneratePDF from "./GeneratePDF";
 
 class App extends Component {
-  counter = 3;
   state = {
     products: [
       {
         id: 0,
-        name: "mleko",
+        name: "milk",
         category: "dairy",
         quantity: 3,
-        unit: "szt.",
+        unit: "pcs",
       },
       {
         id: 1,
-        name: "marchew",
+        name: "carrots",
         category: "vegetables",
         quantity: 5,
-        unit: "szt.",
+        unit: "kg",
       },
       {
         id: 2,
-        name: "gruszki",
+        name: "pears",
         category: "fruits",
         quantity: 7,
-        unit: "szt.",
+        unit: "kg",
       },
       {
         id: 3,
-        name: "chleb",
+        name: "bread",
         category: "baked goods",
         quantity: 1,
-        unit: "szt.",
+        unit: "pcs",
       },
       {
         id: 4,
-        name: "chusteczki higieniczne",
+        name: "napkins",
         category: "cleaners",
         quantity: 2,
-        unit: "szt.",
+        unit: "pcs",
       },
       {
         id: 5,
-        name: "zeszyt",
+        name: "notebook",
         category: "others",
         quantity: 1,
-        unit: "szt.",
+        unit: "pcs",
       },
     ],
     filteredProducts: [],
     isFiltered: false,
-    itemsNumber: 1,
+    idNumber: 6,
+    itemsNumber: 0,
+    itemsWeight: 0,
   };
 
   addProduct = (name, category, quantity, unit) => {
-    // console.log("dodaj obiekt");
+    //Change type from string to number - (number input gets a string value)
     quantity = quantity * 1;
+
+    //Update idNumber
+    let idNumber = this.state.idNumber + 1;
+    if (this.state.products.length === 0) {
+      idNumber = 0;
+    }
+
     const product = {
-      id: this.counter,
+      id: idNumber,
       name,
       category,
       quantity,
       unit,
     };
-    this.counter++;
-    // console.log(product);
 
     this.setState((prevState) => ({
       products: [...prevState.products, product],
+      idNumber,
     }));
 
     return true;
@@ -105,22 +111,68 @@ class App extends Component {
     }
   };
 
-  //Znalezc inny sposob na liczenie
   countProducts = () => {
     let itemsNumber = 0;
-    this.state.products.forEach((product) => (itemsNumber += product.quantity));
-    console.log(itemsNumber);
+    let itemsWeight = 0;
+    this.state.products.forEach((product) => {
+      if (product.unit === "pcs") {
+        itemsNumber += product.quantity;
+      } else if (product.unit === "kg") {
+        itemsWeight += product.quantity;
+      }
+    });
 
     this.setState({
       itemsNumber,
+      itemsWeight,
     });
   };
 
+  manageLocalStorage = (command, nextState = null) => {
+    if (command === "get") {
+      // console.log("get data from LocalStorage");
+      localStorage.getItem("products") &&
+        this.setState({
+          products: JSON.parse(localStorage.getItem("products")),
+          itemsNumber: JSON.parse(localStorage.getItem("itemsNumber")),
+          itemsWeight: JSON.parse(localStorage.getItem("itemsWeight")),
+          idNumber: JSON.parse(localStorage.getItem("idNumber")),
+        });
+    } else if (command === "set") {
+      // console.log("Send data to LocalStorage");
+      localStorage.setItem("products", JSON.stringify(nextState.products));
+      localStorage.setItem("idNumber", JSON.stringify(nextState.idNumber));
+      localStorage.setItem(
+        "itemsNumber",
+        JSON.stringify(nextState.itemsNumber)
+      );
+      localStorage.setItem(
+        "itemsWeight",
+        JSON.stringify(nextState.itemsWeight)
+      );
+    }
+  };
+
+  componentWillMount() {
+    const savedItems = JSON.parse(localStorage.getItem("products"));
+
+    if (savedItems === null) {
+      console.log("null");
+      this.countProducts();
+      return;
+    }
+
+    this.manageLocalStorage("get");
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.products.length !== this.state.products.length) {
-      console.log("inny");
       this.countProducts();
     }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    this.manageLocalStorage("set", nextState);
   }
 
   render() {
@@ -135,6 +187,7 @@ class App extends Component {
           delete={this.deleteProduct}
           isFiltered={this.state.isFiltered}
           itemsNumber={this.state.itemsNumber}
+          itemsWeight={this.state.itemsWeight}
         />
         <h1>Categories</h1>
         <CategoryList filter={this.filterProducts} />

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class AddProduct extends Component {
   state = {
     product: "",
-    category: "veggies",
+    category: "vegetables",
     number: "",
     unit: "pcs",
     checkedPcs: true,
@@ -37,15 +37,19 @@ class AddProduct extends Component {
 
   formValidation = () => {
     let correct = false;
-    if (this.state.product.length > 2 && this.state.number > 0) {
-      console.log("podano produkt");
+    const number = this.state.number;
+
+    if (this.state.product.length > 2 && number > 0 && number < 100) {
       correct = true;
-    } else if (this.state.product.length <= 2) {
-      alert("Nie podano nazwy produktu");
+    } else {
+      if (this.state.product.length <= 2) {
+        alert("The product name is too short");
+      } else if (number <= 0) {
+        alert("Products quantity must be greater than 0");
+      } else if (number >= 100) {
+        alert("Products quantity cannot be greater than 99");
+      }
       correct = false;
-    } else if (this.state.number <= 0) {
-      correct = false;
-      alert("Liczba produktów musi byc wieksza od 0");
     }
     return correct;
   };
@@ -76,23 +80,24 @@ class AddProduct extends Component {
   render() {
     return (
       <div className="add-product">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="clearfix">
           <input
             name="product"
             type="text"
-            placeholder="Wpisz nazwe produktu..."
+            placeholder="Product name..."
             value={this.state.product}
             onChange={this.handleChange}
           />
           <input
+            className="quantity"
             name="number"
             type="number"
-            placeholder="ilosc"
+            placeholder="How many...?"
             value={this.state.number}
             onChange={this.handleChange}
           />
-          <label>
-            szt.
+          <label className="container">
+            pcs
             <input
               type="radio"
               name="unit"
@@ -100,8 +105,9 @@ class AddProduct extends Component {
               checked={this.state.checkedPcs}
               onChange={this.handleChange}
             />
+            <span className="checkmark"></span>
           </label>
-          <label>
+          <label className="container">
             kg
             <input
               type="radio"
@@ -110,6 +116,7 @@ class AddProduct extends Component {
               checked={this.state.checkedKg}
               onChange={this.handleChange}
             />
+            <span className="checkmark"></span>
           </label>
           <select
             name="category"
@@ -117,16 +124,16 @@ class AddProduct extends Component {
             onChange={this.handleChange}
           >
             <option value="vegetables" defaultChecked>
-              warzywa
+              vegetables
             </option>
-            <option value="fruits">owoce</option>
-            <option value="dairy">nabial</option>
-            <option value="baked goods">pieczywo</option>
-            <option value="cleaners">artykuly higieniczne</option>
-            <option value="others">inne</option>
+            <option value="fruits">fruits</option>
+            <option value="dairy">dairy</option>
+            <option value="baked goods">baked goods</option>
+            <option value="cleaners">cleaners</option>
+            <option value="others">others</option>
           </select>
           <button>
-            <FontAwesomeIcon icon="cart-plus" style={{ fontSize: 30 }} />
+            <FontAwesomeIcon icon="cart-plus" style={{ fontSize: 36 }} />
           </button>
         </form>
       </div>
