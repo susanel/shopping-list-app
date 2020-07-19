@@ -2,8 +2,13 @@ import React from "react";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-const GeneratePDF = () => {
+const GeneratePDF = (props) => {
   const exportPDF = () => {
+    if (props.products.length === 0) {
+      alert("There is no items on your Shopping List!");
+      return;
+    }
+
     const orientation = "portrait"; // portrait or landscape
     const unit = "pt"; //pt = points
     const size = "A4";
@@ -15,7 +20,7 @@ const GeneratePDF = () => {
     const title = "Your Shopping List";
     const headers = [["Nº", "PRODUCT", "CATEGORY", "QUANTITY", "UNITS"]];
 
-    const products = this.props.products.map((product, i) => [
+    const products = props.products.map((product, i) => [
       i + 1,
       product.name,
       product.category,
