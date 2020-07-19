@@ -26,6 +26,7 @@ const ShoppingList = (props) => {
         <ShoppingPanel
           itemsNumber={props.itemsNumber}
           itemsWeight={props.itemsWeight}
+          delete={props.delete}
         />
       )}
     </div>

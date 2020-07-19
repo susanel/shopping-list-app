@@ -85,8 +85,19 @@ class App extends Component {
 
   deleteProduct = (id) => {
     let products = [...this.state.products];
-    products = products.filter((product) => product.id !== id);
     let filteredProducts = [...this.state.filteredProducts];
+
+    //Delete all items
+    if (id === "all") {
+      products.length = 0;
+      this.setState({
+        products,
+      });
+      return;
+    }
+
+    //Delete selected item
+    products = products.filter((product) => product.id !== id);
     filteredProducts = filteredProducts.filter((product) => product.id !== id);
 
     this.setState({

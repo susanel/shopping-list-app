@@ -18,9 +18,35 @@ const ShoppingPanel = (props) => {
   ];
 
   if (props.itemsNumber === 0 && props.itemsWeight === 0) {
-    return counterMessageHTML[0];
+    return (
+      <div className="count-wrap">
+        {counterMessageHTML[0]}
+        <div className="delete">
+          <button
+            onClick={() => {
+              props.delete("all");
+            }}
+          >
+            Delete all
+          </button>
+        </div>
+      </div>
+    );
   } else {
-    return counterMessageHTML[1];
+    return (
+      <div className="count-wrap">
+        {counterMessageHTML[1]}
+        <div className="delete">
+          <button
+            onClick={() => {
+              props.delete("all");
+            }}
+          >
+            Delete all
+          </button>
+        </div>
+      </div>
+    );
   }
 };
 
