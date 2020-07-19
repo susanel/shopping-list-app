@@ -13,15 +13,21 @@ const tilesArray = [
 const CategoryList = (props) => {
   const tiles = tilesArray.map((tile, i) => (
     <div className="tile" onClick={() => props.filter(tile.category)} key={i}>
-      <FontAwesomeIcon icon={tile.icon} size="4x" style={{ color: "black" }} />
-      <h2>{tile.category}</h2>
+      <div className="inner-tile">
+        <FontAwesomeIcon
+          icon={tile.icon}
+          size="3x"
+          style={{ color: "black" }}
+        />
+        <h2>{tile.category}</h2>
+      </div>
     </div>
   ));
 
   return (
     <div className="categories">
       {tiles}
-      <div className="tile" onClick={() => props.filter("all")}>
+      <div className="tile show" onClick={() => props.filter("all")}>
         <h2>Show all</h2>
       </div>
     </div>

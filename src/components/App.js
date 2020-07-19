@@ -180,6 +180,8 @@ class App extends Component {
       <div className="app">
         <h1>Add product</h1>
         <AddProduct add={this.addProduct} />
+        <h1>Categories</h1>
+        <CategoryList filter={this.filterProducts} />
         <h1>Shopping List</h1>
         <ShoppingList
           products={this.state.products}
@@ -189,8 +191,6 @@ class App extends Component {
           itemsNumber={this.state.itemsNumber}
           itemsWeight={this.state.itemsWeight}
         />
-        <h1>Categories</h1>
-        <CategoryList filter={this.filterProducts} />
         <GeneratePDF products={this.state.products} />
       </div>
     );
