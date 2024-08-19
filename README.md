@@ -23,4 +23,4 @@ Because the time is short :alarm_clock:, I am going to add more features to it s
 
 ### Live version:
 
-[CLICK HERE](https://susanel92.github.io/shopping-list-app/)
+[CLICK HERE](https://susanel.github.io/shopping-list-app/)
